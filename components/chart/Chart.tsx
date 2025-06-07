@@ -39,7 +39,7 @@ const data = [
     {
         name: 'Page E',
         uv: 1890,
-        pv: 4800,
+        pv: 4700,
         amt: 2181,
     },
     {
