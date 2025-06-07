@@ -24,8 +24,8 @@ export default function ExpensesContainer() {
 
     return (
         <>
-            <div className="h-110 overflow-y-auto md:w-2/3
-             mx-auto rounded border border-base-300 shadow-lg">
+            <div className="h-110 w-full lg:w-1/3 overflow-y-auto
+             rounded border border-base-300 shadow-lg">
                 <table className="table">
                     {/* head */}
                     <thead>

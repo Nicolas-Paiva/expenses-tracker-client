@@ -52,7 +52,7 @@ export default function CreateExpense() {
     }
 
 
-    return <fieldset className="fieldset w-full h-auto md:h-110 bg-base-200 border-base-300 rounded-box border p-4">
+    return <fieldset className="fieldset h-auto w-full md:w-2/3 lg:w-1/3 md:h-110 bg-base-200 border-base-300 rounded-box border p-4">
 
         <h3 className="text-xl">Create an expense</h3>
 
