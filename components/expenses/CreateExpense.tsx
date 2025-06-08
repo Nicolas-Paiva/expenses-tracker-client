@@ -22,6 +22,7 @@ export default function CreateExpense() {
         onSuccess: () => {
             toast.success('Expense created!');
             queryClient.invalidateQueries({queryKey: ['expenses']});
+            queryClient.invalidateQueries({queryKey: ['yearlyExpenses']});
         },
 
         onError: () => {
@@ -34,8 +35,6 @@ export default function CreateExpense() {
         if (!value) {
             setValue('1.99');
         }
-
-
 
         if (!createdAt) {
             setDateError(true);

@@ -10,61 +10,19 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
-import {Expense, getExpenses} from '@/services/expenses';
+import {Expense, getExpenses, getYearlyExpenses, YearlyExpense} from '@/services/expenses';
 import {useQuery} from '@tanstack/react-query';
 import {ISOStringToDate} from '@/utils/utils';
 
-const data = [
-    {
-        name: 'Page A',
-        uv: 4000,
-        pv: 2400,
-        amt: 2400,
-    },
-    {
-        name: 'Page B',
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: 'Page C',
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: 'Page D',
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: 'Page E',
-        uv: 1890,
-        pv: 4700,
-        amt: 2181,
-    },
-    {
-        name: 'Page F',
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: 'Page G',
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-];
+// TODO: Make the chart get the expenses from the /yearly endpoint
+
 export default function Chart() {
 
     // Fetches all the expenses
     const query = useQuery({
-        queryKey: ['expenses'],
+        queryKey: ['yearlyExpenses'],
 
-        queryFn: getExpenses,
+        queryFn: getYearlyExpenses,
     });
 
     const {isLoading, data: expenses} = query;
@@ -75,22 +33,23 @@ export default function Chart() {
         )
     }
 
-    const newExpenses = expenses?.map((expense: Expense) => {
-        const {value, createdAt} = expense;
-        return {value, createdAt: ISOStringToDate(createdAt)};
-    })
+    console.log(expenses);
+
+    // const newExpenses = expenses?.map((expense: YearlyExpense) => {
+    //     const {value, createdAt} = expense;
+    //     return {value, createdAt: ISOStringToDate(createdAt)};
+    // })
 
     return (
         <div className="h-120 w-full">
             <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={newExpenses}>
-                    {/*<CartesianGrid strokeDasharray="3 3" />*/}
-                    <XAxis dataKey="createdAt"/>
+                <LineChart data={expenses}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month"/>
                     <YAxis/>
                     <Tooltip/>
                     <Legend/>
                     <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{r: 8}}/>
-                    {/*<Line type="monotone" dataKey="uv" stroke="#82ca9d"/>*/}
                 </LineChart>
             </ResponsiveContainer>
         </div>

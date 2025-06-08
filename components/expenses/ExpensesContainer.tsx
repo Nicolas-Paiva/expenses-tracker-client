@@ -5,7 +5,6 @@ import {Expense, getExpenses} from '@/services/expenses';
 import {useQuery} from '@tanstack/react-query';
 
 // TODO: modify API method to PUT
-// TODO: Display message if there is no expense
 
 export default function ExpensesContainer() {
 

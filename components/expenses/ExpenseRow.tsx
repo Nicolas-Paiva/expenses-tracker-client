@@ -56,6 +56,7 @@ export default function ExpenseRow({expense}: ExpenseRowProps) {
 
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ['expenses']});
+            queryClient.invalidateQueries({queryKey: ['yearlyExpenses']});
             setEditing(false);
             toast.success('Expense updated!');
             setErrorMessage(false);
@@ -73,6 +74,7 @@ export default function ExpenseRow({expense}: ExpenseRowProps) {
         onSuccess: () => {
             toast.success('Expense deleted');
             queryClient.invalidateQueries({queryKey: ['expenses']});
+            queryClient.invalidateQueries({queryKey: ['yearlyExpenses']});
         },
 
         onError: () => {

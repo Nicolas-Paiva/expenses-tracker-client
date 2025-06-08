@@ -7,12 +7,22 @@ export type Expense = {
     createdAt: string
 }
 
+export type YearlyExpense = {
+    value: number,
+    month: string
+}
+
 
 /**
  * Retrieves a list with all the expenses
  */
 export async function getExpenses(): Promise<Expense[]> {
     const response = await customFetch.get('/expenses');
+    return response.data;
+}
+
+export async function getYearlyExpenses(){
+    const response = await customFetch.get('/expenses/yearly')
     return response.data;
 }
 
