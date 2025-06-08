@@ -10,9 +10,9 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
-import {Expense, getExpenses, getYearlyExpenses, YearlyExpense} from '@/services/expenses';
+import {getYearlyExpenses} from '@/services/expenses';
 import {useQuery} from '@tanstack/react-query';
-import {ISOStringToDate} from '@/utils/utils';
+import Loading from '@/components/Loading';
 
 // TODO: Make the chart get the expenses from the /yearly endpoint
 
@@ -28,17 +28,9 @@ export default function Chart() {
     const {isLoading, data: expenses} = query;
 
     if (isLoading) {
-        return (
-            <span className="block mx-auto loading loading-spinner text-primary w-12"></span>
-        )
+        return <Loading fullScreen={false}/>;
     }
 
-    console.log(expenses);
-
-    // const newExpenses = expenses?.map((expense: YearlyExpense) => {
-    //     const {value, createdAt} = expense;
-    //     return {value, createdAt: ISOStringToDate(createdAt)};
-    // })
 
     return (
         <div className="h-120 w-full">

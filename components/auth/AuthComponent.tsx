@@ -4,6 +4,7 @@ import {useMutation} from '@tanstack/react-query';
 import {register, type AuthRequest, USERNAME_EXISTS, login, LoginResponse, SignUpResponse} from '@/services/auth';
 import toast from 'react-hot-toast';
 import {useRouter} from 'next/navigation';
+import Loading from '@/components/Loading';
 
 type AuthComponentProps = {
     signUp?: boolean
@@ -30,6 +31,8 @@ export default function AuthComponent({signUp = true}: AuthComponentProps) {
     const [badCredentials, setBadCredentials] = useState(false);
 
     const router = useRouter();
+
+    const [loading, setLoading] = useState<boolean>(false);
 
 
     // Validates all the input provided by the user
@@ -97,6 +100,7 @@ export default function AuthComponent({signUp = true}: AuthComponentProps) {
             localStorage.setItem('token', data.jwtToken);
             toast.success('Welcome back!');
             router.push('/expenses');
+            setLoading(true);
         },
 
         onError: (error: Error) => {
@@ -125,6 +129,9 @@ export default function AuthComponent({signUp = true}: AuthComponentProps) {
         }
     }
 
+    if (loading) {
+        return <Loading fullScreen={true}/>
+    }
 
     return (
         <div className="hero bg-base-200 min-h-screen items-start pt-20">

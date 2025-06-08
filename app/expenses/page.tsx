@@ -10,6 +10,9 @@ export default function Expenses() {
 
             <section className="flex flex-col items-center gap-y-12 mx-auto w-[90%]">
 
+                <h1 className="my-6 w-[90%] text-xl">Hello there!</h1>
+
+                {/* Expenses container */}
                 <div className="flex flex-col items-center gap-y-12
                  md:flex-row md:gap-x-8 lg:justify-between w-[90%] mt-4">
                         <CreateExpense/>
