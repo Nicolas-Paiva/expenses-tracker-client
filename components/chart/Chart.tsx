@@ -10,6 +10,9 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
+import {Expense, getExpenses} from '@/services/expenses';
+import {useQuery} from '@tanstack/react-query';
+import {ISOStringToDate} from '@/utils/utils';
 
 const data = [
     {
@@ -56,29 +59,40 @@ const data = [
     },
 ];
 export default function Chart() {
+
+    // Fetches all the expenses
+    const query = useQuery({
+        queryKey: ['expenses'],
+
+        queryFn: getExpenses,
+    });
+
+    const {isLoading, data: expenses} = query;
+
+    if (isLoading) {
+        return (
+            <span className="block mx-auto loading loading-spinner text-primary w-12"></span>
+        )
+    }
+
+    const newExpenses = expenses?.map((expense: Expense) => {
+        const {value, createdAt} = expense;
+        return {value, createdAt: ISOStringToDate(createdAt)};
+    })
+
     return (
         <div className="h-120 w-full">
-        <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-                width={500}
-                height={300}
-                data={data}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
-            >
-                {/*<CartesianGrid strokeDasharray="3 3" />*/}
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-            </LineChart>
-        </ResponsiveContainer>
+            <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={newExpenses}>
+                    {/*<CartesianGrid strokeDasharray="3 3" />*/}
+                    <XAxis dataKey="createdAt"/>
+                    <YAxis/>
+                    <Tooltip/>
+                    <Legend/>
+                    <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{r: 8}}/>
+                    {/*<Line type="monotone" dataKey="uv" stroke="#82ca9d"/>*/}
+                </LineChart>
+            </ResponsiveContainer>
         </div>
     );
 };
