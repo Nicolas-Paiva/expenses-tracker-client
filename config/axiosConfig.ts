@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const API_BASE_URL = 'https://expenses-tracker-v1.onrender.com'
 const PUBLIC_ROUTES: string[] = ['/login', '/register'];
 
 
@@ -13,7 +14,7 @@ function isPublicRoute(url: string | undefined): boolean {
 }
 
 const customFetch = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: API_BASE_URL,
     withCredentials: false
 });
 
