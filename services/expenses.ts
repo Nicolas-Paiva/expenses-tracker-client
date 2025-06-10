@@ -7,10 +7,10 @@ export type Expense = {
     createdAt: string
 }
 
-export type YearlyExpense = {
-    value: number,
-    month: string
-}
+// export type YearlyExpense = {
+//     value: number,
+//     month: string
+// }
 
 
 /**

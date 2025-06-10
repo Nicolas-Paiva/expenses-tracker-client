@@ -154,7 +154,11 @@ export default function AuthComponent({signUp = true}: AuthComponentProps) {
                         <fieldset className="fieldset"
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                signUp ? performSignUp() : performLogin();
+                                if (signUp) {
+                                    performSignUp()
+                                    return;
+                                }
+                                performLogin();
                             }
                         }}>
 

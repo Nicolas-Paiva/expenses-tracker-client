@@ -2,8 +2,8 @@ import type {Metadata} from 'next';
 import {Roboto} from 'next/font/google';
 import './globals.css';
 import {Toaster} from 'react-hot-toast';
-import {QueryClient} from '@tanstack/react-query';
 import Providers from '@/app/Providers/Providers';
+import React from 'react';
 
 const roboto = Roboto({
     variable: '--font-roboto',

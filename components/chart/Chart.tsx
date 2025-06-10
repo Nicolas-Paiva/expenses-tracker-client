@@ -14,8 +14,6 @@ import {getYearlyExpenses} from '@/services/expenses';
 import {useQuery} from '@tanstack/react-query';
 import Loading from '@/components/Loading';
 
-// TODO: Make the chart get the expenses from the /yearly endpoint
-
 export default function Chart() {
 
     // Fetches all the expenses
