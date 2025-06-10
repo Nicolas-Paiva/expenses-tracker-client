@@ -7,9 +7,9 @@ export default function Hero() {
                 <div className="max-w-md">
                     <h1 className="text-5xl font-bold">Expense Mate</h1>
                     <p className="py-6 text-md">
-                        Ever needed an application to manage your expenses? Expense Mate helps you
-                        organize all your expenses. Track your expenses along the year, look for
-                        specific expense categories to verify whether you are spending more than you should.
+                        Expense Mate lets you easily create, update, and delete your expenses throughout the year.
+                        Visualize your spending with clear, interactive charts that help you track your expenses over
+                        time.
                     </p>
                     <a href="/signup" className="link link-accent">Get Started</a>
                 </div>
